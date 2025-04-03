@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система Наследования на Блокчейне</title>
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Путь к файлу стилей (убедись, что он верный) -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.5/dist/web3.min.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header-bar">
+             <div class="header-content">
+                 <!-- Заголовок -->
+                 <h1><i class="fas fa-file-contract"></i> Система Наследования на Блокчейне</h1>
+                 <!-- Статус подключения -->
+                 <div id="connection-status">
+                    <!-- Кнопка подключения (скрывается при подключении) -->
+                    <button id="connectWallet" class="btn btn-primary">
+                        <i class="fas fa-wallet"></i> Подключить кошелек
+                    </button>
+                    <!-- Отображение адреса (появляется при подключении) -->
+                    <span id="userAccount" class="account-display" style="display: none;"></span>
+                    <!-- Кнопка отключения (появляется при подключении) -->
+                    <button id="disconnectWalletBtn" class="btn btn-outline-light" style="display: none;">
+                         <i class="fas fa-sign-out-alt"></i> Отключить
+                    </button>
+                 </div>
+             </div>
+        </header>
+
+        <div class="container">
+             <main class="main-content">
+                 <!-- Уведомления -->
+                 <div id="notifications" class="notifications" style="display: none;"></div>
+
+                 <!-- Информация о контракте -->
+                 <section class="info-section card">
+                     <h2><i class="fas fa-info-circle"></i> Информация о Контракте</h2>
+                     <div id="contractInfo">
+                         <p><strong>Статус:</strong> <span id="status-message">Не подключен</span></p>
+                         <p><strong>Владелец:</strong> <span id="ownerAddress">N/A</span></p>
+                         <p><strong>Статус владельца:</strong> <span id="ownerDeceasedStatus">N/A</span></p>
+                         <p><strong>Баланс контракта:</strong> <span id="contractBalance">N/A</span> ETH</p>
+                         <button id="checkBalanceBtn" class="btn btn-primary" disabled><i class="fas fa-sync"></i> Обновить баланс</button>
+                     </div>
+                 </section>
+
+                 <!-- Действия владельца (скрыты по умолчанию) -->
+                 <section id="ownerActions" class="actions-section card" style="display: none;">
+                     <h2><i class="fas fa-user-shield"></i> Действия Владельца</h2>
+                     <div class="form-group">
+                         <label for="heirAddressInput">Адрес наследника:</label>
+                         <input type="text" id="heirAddressInput" placeholder="0x...">
+                         <label for="shareInput">Доля (%):</label>
+                         <input type="number" id="shareInput" min="1" max="100" placeholder="1-100">
+                         <button id="addHeirBtn" class="btn btn-primary"><i class="fas fa-user-plus"></i> Добавить</button>
+                     </div>
+                     <hr>
+                     <div class="form-group">
+                         <label for="depositAmountInput">Сумма пополнения (ETH):</label>
+                         <input type="number" id="depositAmountInput" step="0.01" min="0.001" placeholder="0.1">
+                         <button id="depositBtn" class="btn btn-primary"><i class="fas fa-coins"></i> Пополнить</button>
+                     </div>
+                     <hr>
+                     <button id="markDeceasedBtn" class="btn btn-warning"><i class="fas fa-user-slash"></i> Отметить как умершего</button>
+                 </section>
+
+                 <!-- Секция распределения (скрыта по умолчанию) -->
+                 <section id="distributionSection" class="actions-section card" style="display: none;">
+                     <h2><i class="fas fa-hand-holding-usd"></i> Распределение Активов</h2>
+                     <p>Владелец отмечен как умерший. Можно распределять активы.</p>
+                     <button id="distributeAssetsBtn" class="btn btn-success"><i class="fas fa-share-square"></i> Распределить активы</button>
+                 </section>
+
+                 <!-- Список наследников -->
+                 <section class="heirs-section card">
+                     <h2><i class="fas fa-users"></i> Список Наследников</h2>
+                     <div id="heirsList">
+                         <p>Подключите кошелек для просмотра списка.</p>
+                     </div>
+                 </section>
+             </main>
+         </div>
+
+         <footer class="footer">
+             <p>© 2025 Исабаев Исмар / Система наследования</p>
+         </footer>
+     </div> <!-- Конец page-wrapper -->
+
+    <script src="script.js"></script>
+</body>
+</html>

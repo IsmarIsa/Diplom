@@ -1,0 +1,310 @@
+{
+  "address": "0xE7C08e33F7a72b0A838cecd8Af23a6E39C5dE656",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "payable",
+      "type": "constructor",
+      "payable": true,
+      "signature": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "heir",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "AssetsDistributed",
+      "type": "event",
+      "signature": "0x90a8167889b4e7e09e759f552565094d8dd4fd0b1c65c705e78d61369cb2bc6b"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "heir",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "share",
+          "type": "uint256"
+        }
+      ],
+      "name": "HeirAdded",
+      "type": "event",
+      "signature": "0x53ecd725315076d49de41e105a400b4659b4eb2060f6677e74e2a4cb645b4785"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "heir",
+          "type": "address"
+        }
+      ],
+      "name": "HeirRemoved",
+      "type": "event",
+      "signature": "0x1a7209727e630887f10df0c1048028b1b5d634699b5b845f1d10e7156cb0e6bd"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "OwnerDeceased",
+      "type": "event",
+      "signature": "0xd39dddb7c6f38edbed5d56fd51147c86df00732d741f5028b20ee442c1d23c99"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_heirAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_share",
+          "type": "uint256"
+        }
+      ],
+      "name": "addHeir",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x9cdd47f2"
+    },
+    {
+      "inputs": [],
+      "name": "checkContractBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x50312c9e"
+    },
+    {
+      "inputs": [],
+      "name": "depositInheritance",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true,
+      "signature": "0xa33dade1"
+    },
+    {
+      "inputs": [],
+      "name": "distributeAssets",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x256fc59a"
+    },
+    {
+      "inputs": [],
+      "name": "getAllHeirs",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "addresses",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "shares",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x959a8f36"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_heirAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getHeirInfo",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "share",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isValid",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "inheritedAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0xd7f3fb2b"
+    },
+    {
+      "inputs": [],
+      "name": "getOwnerStatus",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "ownerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "deceased",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x75c96f64"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "heirAddresses",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x4be2bab7"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "heirs",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "heirAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "share",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isValid",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "inheritedAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0xf45b587c"
+    },
+    {
+      "inputs": [],
+      "name": "isDeceased",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x85ac4515"
+    },
+    {
+      "inputs": [],
+      "name": "markAsDeceased",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0xfebd5b0e"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x8da5cb5b"
+    },
+    {
+      "inputs": [],
+      "name": "totalInheritance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0x80369a9b"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive",
+      "payable": true
+    }
+  ]
+}
