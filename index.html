@@ -6,7 +6,7 @@
     <title>Система Наследования на Блокчейне</title>
     <!-- Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Путь к файлу стилей (убедись, что он верный) -->
+    <!-- Путь к файлу стилей  -->
     <link rel="stylesheet" href="styles.css">
     <!-- Web3.js -->
     <script src="https://cdn.jsdelivr.net/npm/web3@1.7.5/dist/web3.min.js"></script>
@@ -45,12 +45,14 @@
                          <p><strong>Статус:</strong> <span id="status-message">Не подключен</span></p>
                          <p><strong>Владелец:</strong> <span id="ownerAddress">N/A</span></p>
                          <p><strong>Статус владельца:</strong> <span id="ownerDeceasedStatus">N/A</span></p>
+                         <!-- Новое поле для времени разблокировки -->
+                         <p id="unlockTimeRow" style="display: none;"><strong>Распределение возможно после:</strong> <span id="distributionUnlockTime">N/A</span></p>
                          <p><strong>Баланс контракта:</strong> <span id="contractBalance">N/A</span> ETH</p>
                          <button id="checkBalanceBtn" class="btn btn-primary" disabled><i class="fas fa-sync"></i> Обновить баланс</button>
                      </div>
                  </section>
 
-                 <!-- Действия владельца (скрыты по умолчанию) -->
+                 <!-- Действия Владельца (скрыты по умолчанию) -->
                  <section id="ownerActions" class="actions-section card" style="display: none;">
                      <h2><i class="fas fa-user-shield"></i> Действия Владельца</h2>
                      <div class="form-group">
@@ -70,14 +72,22 @@
                      <button id="markDeceasedBtn" class="btn btn-warning"><i class="fas fa-user-slash"></i> Отметить как умершего</button>
                  </section>
 
-                 <!-- Секция распределения (скрыта по умолчанию) -->
-                 <section id="distributionSection" class="actions-section card" style="display: none;">
-                     <h2><i class="fas fa-hand-holding-usd"></i> Распределение Активов</h2>
-                     <p>Владелец отмечен как умерший. Можно распределять активы.</p>
-                     <button id="distributeAssetsBtn" class="btn btn-success"><i class="fas fa-share-square"></i> Распределить активы</button>
+                 <!-- Секция ПОДГОТОВКИ Распределения -->
+                 <section id="preparationSection" class="actions-section card" style="display: none;">
+                     <h2><i class="fas fa-cogs"></i> Подготовка к Распределению</h2>
+                     <p>Владелец отмечен как умерший и срок блокировки прошел. Необходимо рассчитать доли для вывода.</p>
+                     <!-- Новая кнопка -->
+                     <button id="prepareDistributionBtn" class="btn btn-info"><i class="fas fa-calculator"></i> Подготовить распределение</button>
                  </section>
 
-                 <!-- Список наследников -->
+                 <!-- Новая секция: Действия Наследника -->
+                 <section id="heirWithdrawSection" class="actions-section card" style="display: none;">
+                    <h2><i class="fas fa-hand-holding-usd"></i> Действия Наследника</h2>
+                    <p>Вам доступна к выводу сумма: <strong id="withdrawableAmount">N/A</strong> ETH</p>
+                    <button id="withdrawShareBtn" class="btn btn-success"><i class="fas fa-download"></i> Забрать свою долю</button>
+                 </section>
+
+                 <!-- Список наследников (добавим место для суммы вывода) -->
                  <section class="heirs-section card">
                      <h2><i class="fas fa-users"></i> Список Наследников</h2>
                      <div id="heirsList">
