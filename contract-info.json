@@ -1,5 +1,5 @@
 {
-  "address": "0xE7C08e33F7a72b0A838cecd8Af23a6E39C5dE656",
+  "address": "0xBCB7a9e8Eb469889261341C7dDa7F2dfE2eE9383",
   "abi": [
     {
       "inputs": [],
@@ -9,12 +9,88 @@
       "signature": "constructor"
     },
     {
+      "inputs": [],
+      "name": "AlreadyDeceased",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DistributionAlreadyPrepared",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DistributionTimelockNotPassed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "HeirAlreadyExists",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "HeirNotFound",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidShare",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoHeirs",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotDeceased",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NothingToWithdraw",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "currentTotal",
+          "type": "uint256"
+        }
+      ],
+      "name": "SharesNot100Percent",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WithdrawalFailed",
+      "type": "error"
+    },
+    {
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
-          "name": "heir",
+          "name": "depositor",
           "type": "address"
         },
         {
@@ -24,15 +100,15 @@
           "type": "uint256"
         }
       ],
-      "name": "AssetsDistributed",
+      "name": "DepositMade",
       "type": "event",
-      "signature": "0x90a8167889b4e7e09e759f552565094d8dd4fd0b1c65c705e78d61369cb2bc6b"
+      "signature": "0xd15c9547ea5c06670c0010ce19bc32d54682a4b3801ece7f3ab0c3f17106b4bb"
     },
     {
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "heir",
           "type": "address"
@@ -52,7 +128,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "heir",
           "type": "address"
@@ -64,10 +140,52 @@
     },
     {
       "anonymous": false,
-      "inputs": [],
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "distributionUnlockTime",
+          "type": "uint256"
+        }
+      ],
       "name": "OwnerDeceased",
       "type": "event",
-      "signature": "0xd39dddb7c6f38edbed5d56fd51147c86df00732d741f5028b20ee442c1d23c99"
+      "signature": "0xc1191ebd64dce85365d87fde85fa2d1889d4547035d7752c8d93d8fb59cc9b48"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "heir",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawalMade",
+      "type": "event",
+      "signature": "0xbc158bb64f05d6383aea69bbb0b20c1bbf4b7a18f63359c5649b7c39e29d3884"
+    },
+    {
+      "inputs": [],
+      "name": "DISTRIBUTION_DELAY",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true,
+      "signature": "0xce1bc6e1"
     },
     {
       "inputs": [
@@ -114,11 +232,18 @@
     },
     {
       "inputs": [],
-      "name": "distributeAssets",
-      "outputs": [],
-      "stateMutability": "nonpayable",
+      "name": "distributionUnlockTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function",
-      "signature": "0x256fc59a"
+      "constant": true,
+      "signature": "0xac3e85ce"
     },
     {
       "inputs": [],
@@ -132,6 +257,11 @@
         {
           "internalType": "uint256[]",
           "name": "shares",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "pending",
           "type": "uint256[]"
         }
       ],
@@ -162,7 +292,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "inheritedAmount",
+          "name": "pendingWithdrawal",
           "type": "uint256"
         }
       ],
@@ -223,11 +353,6 @@
       "name": "heirs",
       "outputs": [
         {
-          "internalType": "address",
-          "name": "heirAddress",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
           "name": "share",
           "type": "uint256"
@@ -236,11 +361,6 @@
           "internalType": "bool",
           "name": "isValid",
           "type": "bool"
-        },
-        {
-          "internalType": "uint256",
-          "name": "inheritedAmount",
-          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -287,8 +407,14 @@
       "signature": "0x8da5cb5b"
     },
     {
-      "inputs": [],
-      "name": "totalInheritance",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "pendingWithdrawals",
       "outputs": [
         {
           "internalType": "uint256",
@@ -299,7 +425,23 @@
       "stateMutability": "view",
       "type": "function",
       "constant": true,
-      "signature": "0x80369a9b"
+      "signature": "0xf3f43703"
+    },
+    {
+      "inputs": [],
+      "name": "prepareDistribution",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x14efea48"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawShare",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "signature": "0x24349671"
     },
     {
       "stateMutability": "payable",
