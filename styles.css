@@ -9,6 +9,7 @@
     --success-color: #198754; /* Bootstrap зеленый */
     --warning-color: #ffc107; /* Bootstrap желтый/оранжевый */
     --danger-color: #dc3545; /* Bootstrap красный */
+    --info-color: #0dcaf0;   /* Bootstrap info цвет */
     --light-color: #ffffff;
     --dark-color: #212529; /* Bootstrap темный */
     --grey-light: #f8f9fa; /* Bootstrap светлый фон */
@@ -145,7 +146,11 @@ h2 {
 .info-section p span {
     word-break: break-all; /* Перенос длинных адресов */
 }
-
+/* Секция информации - строка времени разблокировки */
+#unlockTimeRow {
+    color: var(--secondary-color); /* Серый цвет для доп. информации */
+    font-size: 0.9em;
+}
 #contractInfo button {
     margin-top: 1rem;
 }
@@ -184,6 +189,19 @@ h2 {
 .btn-success { color: var(--light-color); background-color: var(--success-color); border-color: var(--success-color); --rgb-primary-color: 25, 135, 84; }
 .btn-warning { color: #000; background-color: var(--warning-color); border-color: var(--warning-color); --rgb-primary-color: 255, 193, 7; }
 .btn-secondary { color: var(--light-color); background-color: var(--secondary-color); border-color: var(--secondary-color); --rgb-primary-color: 108, 117, 125; }
+/* Стиль для кнопки "Подготовить распределение" */
+.btn-info {
+    color: var(--light-color);
+    background-color: var(--info-color);
+    border-color: var(--info-color);
+     --rgb-primary-color: 13, 202, 240; /* Для focus shadow */
+}
+.btn-info:hover {
+     color: var(--light-color);
+     background-color: #0aa3c2; /* Темнее при наведении */
+     border-color: #0aa3c2;
+     opacity: 1;
+}
 /* Стиль для кнопки "Отключить" */
 .btn-outline-light {
     color: var(--grey-light);
@@ -214,7 +232,6 @@ h2 {
 .btn i:last-child {
     margin-right: 0;
 }
-
 
 /* Формы */
 .form-group {
@@ -263,24 +280,77 @@ hr {
     margin: 1.5rem 0;
 }
 
+/* Секция вывода для наследника */
+#heirWithdrawSection p strong {
+    color: var(--success-color); /* Выделяем сумму зеленым */
+    font-size: 1.1em;
+}
+
 /* Список наследников */
 .heirs-section ul {
-    list-style: disc;
-    padding-left: 20px;
+    list-style: none; /* Убираем стандартные маркеры */
+    padding: 0;
     margin: 0;
 }
 .heirs-section li {
-    margin-bottom: 0.5rem;
-    font-size: 0.95em;
-    line-height: 1.4;
+    margin-bottom: 0.75rem; /* Немного увеличим отступ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 15px; /* Паддинги внутри элемента списка */
+    background-color: #f0f2f5; /* Легкий фон для лучшего разделения */
+    border-left: 4px solid var(--primary-color); /* Акцентная полоска слева */
+    border-radius: var(--border-radius);
+}
+.heirs-section .heir-info {
+    flex-basis: 70%; /* Место для адреса и доли */
+    padding-right: 10px; /* Отступ справа, чтобы не сливалось с суммой */
 }
 .heirs-section .heir-address {
      word-break: break-all;
-     /* font-family: monospace; */ /* Раскомментировать для моноширинного шрифта */
+     display: block; /* Адрес на своей строке */
+     margin-bottom: 3px;
+     color: #555;
+     font-family: monospace; /* Моноширинный шрифт для адресов */
+     font-size: 0.9em;
 }
 .heirs-section .heir-share {
     font-weight: 500;
-    margin-left: 5px; /* Небольшой отступ для доли */
+    margin-left: 0; /* Убираем лишний отступ */
+}
+.heirs-section .heir-withdrawal-info {
+    flex-basis: 25%; /* Место для суммы вывода */
+    text-align: right;
+    font-size: 0.9em;
+    min-width: 120px; /* Минимальная ширина для суммы */
+    flex-shrink: 0; /* Не сжимать блок суммы */
+}
+.heirs-section .withdrawal-amount {
+    font-weight: bold;
+    color: var(--success-color);
+}
+.heirs-section .no-withdrawal {
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+/* Адаптивность для списка наследников */
+@media (max-width: 600px) {
+    .heirs-section li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+     .heirs-section .heir-info,
+     .heirs-section .heir-withdrawal-info {
+         flex-basis: 100%;
+         text-align: left;
+         margin-top: 8px;
+         padding-right: 0;
+     }
+     .heirs-section .heir-withdrawal-info {
+         margin-top: 5px; /* Чуть меньше отступ для суммы */
+     }
 }
 
 
